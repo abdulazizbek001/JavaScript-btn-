@@ -8,11 +8,13 @@ const elRezult1 = document.querySelector('.rezult1');
 const elRezult2 = document.querySelector('.rezult2');
 const elRezult3 = document.querySelector('.rezult3');
 const elSpanBefore = document.querySelector('.span-before');
+const elRezultsBtn = document.querySelector('.rezults-btn');
+const elCopyBox = document.querySelector('.copy-box');
 
-elRezult.textContent = '500px';
-elRezult1.textContent = '500px';
-elRezult2.textContent = '500px';
-elRezult3.textContent = '500px';
+elRezult.textContent = '0px';
+elRezult1.textContent = '0px';
+elRezult2.textContent = '0px';
+elRezult3.textContent = '0px';
 
 elInputX.addEventListener('input', () => {
     elRezult2.textContent = elInputX.value + 'px';
@@ -45,9 +47,6 @@ elInputD.addEventListener('input', () => {
 })
 
 function Before() {
-    elSpanBefore.style.cssText = `
-                transition: all 1s ease;
-            `
     elSpanBefore.style.borderBottomRightRadius = elInputX.value + 'px';
     elSpanBefore.style.borderTopRightRadius = elInputY.value + 'px';
     elSpanBefore.style.borderTopLeftRadius = elInputZ.value + 'px';
@@ -55,3 +54,12 @@ function Before() {
 }
 
 Before();
+
+elRezultsBtn.addEventListener('click', () => {
+    let result = elRezult.textContent + ' ' + elRezult1.textContent  + ' ' + elRezult2.textContent  + ' ' + elRezult3.textContent
+    navigator.clipboard.writeText(result);
+    elCopyBox.style.display = 'inline-block';
+    setTimeout(() => {
+        elCopyBox.style.display = 'none';
+    }, 1000);
+})
